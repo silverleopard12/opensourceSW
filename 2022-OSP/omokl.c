@@ -38,29 +38,29 @@ void initGame()
 			if (i == 0)
 			{
 				if (k == 0)
-					printf("¶£");
+					printf("‚îå");
 				else if (k + 1 == MAP_X)
-					printf("¶§");
+					printf("‚îê");
 				else
-					printf("¶®");
+					printf("‚î¨");
 			}
 			else if (i + 1 < MAP_Y)
 			{
 				if (k == 0)
-					printf("¶ß");
+					printf("‚îú");
 				else if (k + 1 == MAP_X)
-					printf("¶©");
+					printf("‚î§");
 				else
-					printf("¶´");
+					printf("‚îº");
 			}
 			else
 			{
 				if (k == 0)
-					printf("¶¶");
+					printf("‚îî");
 				else if (k + 1 == MAP_X)
-					printf("¶•");
+					printf("‚îò");
 				else
-					printf("¶™");
+					printf("‚î¥");
 			}
 		}
 		printf("\n");
@@ -70,23 +70,23 @@ void initGame()
 int searchStone(xy hd, int **GMap, int flag, int p, int sw)
 {
 	if (GMap[hd.y][hd.x] != flag) return 0;
-	if (p == 0) // ¿ß æ∆∑° ≈Ωªˆ
+	if (p == 0)
 	{
 		hd.y += sw;
 	}
 
-	else if (p == 1) // ¡¬ øÏ ≈Ωªˆ
+	else if (p == 1)
 	{
 		hd.x += sw;
 	}
 
-	else if (p == 2) // øﬁ¬  ¿ß -> ø¿∏•¬  æ∆∑°
+	else if (p == 2)
 	{
 		hd.x += sw;
 		hd.y += sw;
 	}
 
-	else // ø¿∏•¬  ¿ß -> øﬁ¬  æ∆∑°
+	else
 	{
 		hd.x += sw;
 		hd.y -= sw;
@@ -106,10 +106,10 @@ void checkStone(xy hd, int **GMap, int turn)
 		{
 			gotoxy(0, MAP_Y);
 			if (turn == U1)
-				printf("ªÁøÎ¿⁄ 1");
+				printf("ÏÇ¨Ïö©Ïûê 1");
 			else
-				printf("ªÁøÎ¿⁄ 2");
-			printf("¥‘¿Ã Ω¬∏Æ«œºÃΩ¿¥œ¥Ÿ.!");
+				printf("ÏÇ¨Ïö©Ïûê 2");
+			printf("ÎãòÏù¥ ÏäπÎ¶¨ÌïòÏÖ®ÏäµÎãàÎã§.!");
 			getch();
 			exit(1);
 		}
@@ -156,7 +156,7 @@ void startGame(int **GMap)
 					if (turn == U1)
 					{
 						GMap[hd.y][hd.x] = U1;
-						printf("°‹");
+						printf("‚óè");
 						checkStone(hd, GMap, turn);
 						turn = U2;
 					}
@@ -164,7 +164,7 @@ void startGame(int **GMap)
 
 					{
 						GMap[hd.y][hd.x] = U2;
-						printf("°€");
+						printf("‚óã");
 						checkStone(hd, GMap, turn);
 						turn = U1;
 					}
@@ -186,27 +186,11 @@ int main() {
 	system("mode con cols=222 lines=70");
 	printf("STARBRIDGE\n");
 	printf("> KEY - Arrow keys, Spaces bar\n");
-	while (1) {
-		printf("> Enter the height(MAX = 63, MIN = 32)\n");
-		scanf_s("%d", &MAP_Y);
-		if (MAP_Y < 32 || MAP_Y > 63) {
-			printf("Invalid value. Please re-enter\n");
-		}
-		else {
-			break;
-		}
-	}
-	while (1) {
-		printf("> Enter the width(MAX = 200, MIN = 100) \n");
-		scanf_s("%d", &MAP_X);
-		if (MAP_X < 100 || MAP_X > 200) {
-			printf("Invalid value. Please re-enter\n");
-		}
-		else {
-			break;
-		}
-	}
-
+	printf("> Enter the height\n");
+	scanf_s("%d", &MAP_Y);
+	printf("> Enter the width\n");
+	scanf_s("%d", &MAP_X);
+		
 	GMap = (int**)malloc(sizeof(int*) * MAP_Y);
 	GMap[0] = (int*)malloc(sizeof(int) * MAP_Y, MAP_X);
 	for (int i = 1; i < MAP_Y; i++) {
