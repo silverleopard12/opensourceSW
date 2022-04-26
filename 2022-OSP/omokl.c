@@ -184,7 +184,6 @@ void startGame(int **GMap)
 int main() {
 	PlaySound(TEXT(Third_Run), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 	system("mode con cols=222 lines=70");
-	printf("STARBRIDGE\n");
 	printf("> KEY - Arrow keys, Spaces bar\n");
 	printf("> Enter the height\n");
 	scanf_s("%d", &MAP_Y);
