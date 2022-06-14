@@ -11,7 +11,7 @@ typedef struct DListNode {
 	element data;
 }DListNode;
 
-DListNode* current; // 현재 위치(현재 play되는 곡)
+DListNode* current; // play되고 있는 노래
 
 void init(DListNode* head) {
 	head->rlink = head;
@@ -39,16 +39,6 @@ void ddelete(DListNode* head, DListNode* removed) {
 		free(removed);
 	}
 }
-
-void free_node(DListNode* head) {
-	DListNode* p = head->rlink, * next;
-	while (p != head) {
-		next = p->rlink;
-		free(p);
-		p = next;
-	}
-}
-
 void search(DListNode* head, element data) {
 	DListNode* p = head->rlink;
 	for (; p != head; p = p->rlink) {
@@ -63,7 +53,7 @@ void search(DListNode* head, element data) {
 	printf("%s 탐색 실패\n\n", data);
 }
 void print_dlist(DListNode* head) {
-	DListNode* p = head->rlink; // 첫번째 노드의 주소 대입
+	DListNode* p = head->rlink;
 	for (; p != head; p = p->rlink) {
 		if (p == current)
 			printf("<-| %s |-> ", p->data);
@@ -73,16 +63,24 @@ void print_dlist(DListNode* head) {
 	printf("\n\n");
 }
 
+void free_node(DListNode* head) {
+	DListNode* p = head->rlink, * next;
+	while (p != head) {
+		next = p->rlink;
+		free(p);
+		p = next;
+	}
+}
 
 int main() {
-	char ch= '0'; // command < > q
+	char ch= '0';
 	char title[100];
 
 	char song1[] = "DM";
 	char song2[] = "GLASSY";
 	char song3[] = "Villain";
 
-	DListNode* head = (DListNode*)malloc(sizeof(DListNode)); // 헤드 노드
+	DListNode* head = (DListNode*)malloc(sizeof(DListNode)); 
 	init(head);
 	printf("playlist\n");
 	printf("---- %s ---- is playing\n" ,song3);
@@ -90,7 +88,7 @@ int main() {
 	dinsert(head, song2);
 	dinsert(head, song3);
 
-	current = head->rlink; // 현재 play되는 곡 - current 포인터는 첫번째 데이터를 담은 노드
+	current = head->rlink;
 	print_dlist(head);
 
 	while(ch != 'q') {
@@ -110,22 +108,21 @@ int main() {
 			gets(title);
 			search(head, title);
 			break;
-		case '<': // 이전 곡으로 이동
-			current = current->llink; // left link로 이동
-			if (current == head) // 헤드 노드인 경우 예외처리 -> 헤드의 왼쪽
+		case '<':
+			current = current->llink; 
+			if (current == head)
 				current = head->llink;
 			getchar();
 			break;
-		case '>': // 다음 곡으로 이동
-			current = current->rlink; // right link로 이동
-			if (current == head) // 헤드 노드인 경우 예외처리 -> 헤드의 오른쪽
+		case '>': 
+			current = current->rlink; 
+			if (current == head) 
 				current = head->rlink;
 			getchar();
 			break;
 		}
 		printf("\n---- %s ---- is playing\n", current->data);
 		print_dlist(head);
-		//getchar(); // 줄바꿈 문자 제거
 	}
 	printf("Ending Playlist\n");
 	printf("Good bye\n");
@@ -133,4 +130,3 @@ int main() {
 	free(head);
 	return 0;
 }
-
