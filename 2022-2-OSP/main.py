@@ -37,12 +37,11 @@ class Button:
 
 
 # Buttons
-buttonListValues = [['C', 'sin', 'cos', '/'],
+buttonListValues = [['CE', 'sin', 'cos', '/'],
                     ['7', '8', '9', '*'],
                     ['4', '5', '6', '-'],
                     ['1', '2', '3', '+'],
                     ['0', 'e', 'pi', '=']]
-                   #['%', 'CE', 'C', 'del'],
 
 buttonList = []
 for x in range(4):
@@ -89,13 +88,11 @@ while True:
 
         # print(length)
         x, y = lmList[8]
-        '''
         # Fine distance to lmList[8]
         # lmList2 = hands[0]['lmList2']
-        x, y, w, h = hands[0]['bbox']
+        '''x, y, w, h = hands[0]['bbox']
         x1, y1 = lmList[5]
         x2, y2 = lmList[17]
-
         distance = int(math.sqrt((y2-y1)**2 + (x2-x1)**2))
         A, B, C = coff
         distanceCM = A * distance ** 2 + B * distance + C
@@ -109,7 +106,7 @@ while True:
                     if myValue == '=':
                         myEquation = str(eval(myEquation))
 
-                    elif myValue == 'C':
+                    elif myValue == 'CE':
                         myEquation *= 0
 
                     elif myValue == 'sin':
