@@ -72,10 +72,10 @@ while True:
     hands, img = detector.findHands(img)
 
     # Draw All
-    cv2.rectangle(img, (500, 50), (500 + 400, 70 + 100),
+    cv2.rectangle(img, (500, 50), (500 + 400, 50 + 100),
                   (225, 225, 225), cv2.FILLED)
 
-    cv2.rectangle(img, (500, 50), (500 + 400, 70 + 100),
+    cv2.rectangle(img, (500, 50), (500 + 400, 50 + 100),
                   (50, 50, 50), 3)
 
     for button in buttonList:
