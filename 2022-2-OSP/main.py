@@ -104,20 +104,18 @@ while True:
                 if button.checkClick(x, y):
                     myValue = buttonListValues[int(i % 5)][int(i / 5)]  # get correct number
                     if myValue == '=':
-                        myEquation = str(eval(myEquation))
+                        myEquation = str(round(float(eval(myEquation)), 10))
 
                     elif myValue == 'CE':
                         myEquation *= 0
 
                     elif myValue == 'sin':
                         myEquation = str(eval(myEquation))
-                        myEquation = round(sin(float(myEquation)), 6)
-                        myEquation = str(myEquation)
+                        myEquation = str(round(sin(float(myEquation)), 6))
 
                     elif myValue == 'cos':
                         myEquation = str(eval(myEquation))
-                        myEquation = round(cos(float(myEquation)), 6)
-                        myEquation = str(myEquation)
+                        myEquation = str(round(cos(float(myEquation)), 6))
 
                     else:
                         myEquation += myValue
